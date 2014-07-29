@@ -5,9 +5,15 @@ A better workplace synergy
 
 Set UP
 ======
-Run:
+Installation:
 
 ```bash
 npm install bower
 bower install
+```
+
+Optional:
+
+```bash
+npm install nodemon
 ```
