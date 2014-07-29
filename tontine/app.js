@@ -86,9 +86,7 @@ passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret: YA
                 })
                 return done(null, newUser);
             }
-        })
-
-        done(null, profile);
+        });
     });
 }
 ));
