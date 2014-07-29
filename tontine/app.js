@@ -4,11 +4,27 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
+var PassportLocalStrategy = require('passport-local').Strategy;
+var YammerStrategy = require('passport-yammer').Strategy;
+
+var YAMMER_CONSUMER_KEY = "OfONHDZ938SqEUudZF2dw";
+var YAMMER_CONSUMER_SECRET = "0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4";
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var User = require('./models/user.js');
+
+
+
+
+
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -21,10 +37,50 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('connect-flash')());
+
+app.use(session({secret: 'my secret', cookie: {maxAge:24*60*60*1000}}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/', routes);
 app.use('/users', users);
 
-/// catch 404 and forward to error handler
+
+
+
+
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret:
+YAMMSER_CONSUMER_SECRET, callbackURL: "/"}, function(accessToken, refreshToken, profile, done){
+    process.nextTick(function(){
+        console.log("strategy");
+        console.log(profile);
+        console.log(accessToken);
+        console.log(refreshToken);
+
+        done(null, profile);
+    });
+}
+));
+
+mongoose.connect('mongodb://localhost/tontine');
+
+var tester = User.find({username : "bob"}, function(err, p){
+    if (err) console.log("didn't find bob");
+    var lolz = p.username;
+    console.log(p);
+    console.log(lolz);
+    return p;
+
+
+});
+
+
+/// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;

@@ -34,11 +34,22 @@ router.post('/register', function(req, res) {
   });
 });
 
+
+router.get('/auth/yammer', function(res, req){
+res.render('login', {});
+});
+
+router.get('/auth/yammer/callback', passport.authenticate('yammer', {failureRedirect: '/login'}),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
 router.get('/login', function(req, res) {
   res.render('login', {});
 });
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login', passport.authenticate('yammer', {
   successRedirect : '/profile',
   failureRedirect : '/login',
   failureFlash : true
