@@ -51,16 +51,42 @@ app.use('/users', users);
 
 
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+});
+passport.deserializeUser(function(id, done){
+    User.findById(id, function(err, user) {
+        done(err, user);
+    });
+});
 
-passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret:
-YAMMSER_CONSUMER_SECRET, callbackURL: "/"}, function(accessToken, refreshToken, profile, done){
+passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret: YAMMER_CONSUMER_SECRET, callbackURL: "/"},
+ function(accessToken, refreshToken, profile, done){
     process.nextTick(function(){
         console.log("strategy");
         console.log(profile);
         console.log(accessToken);
         console.log(refreshToken);
+        User.findOne({ 'yammer.id' : profile:id }, function(err, user) {
+            if (err)
+                return done(err);
+
+            if (user) {
+                return done(null, user);
+            }
+            else {
+                var newUser = new User();`
+
+                newUser.yammer.id = profile.id;
+                newUser.yammer.token = token;
+                newUser.facebook.name = profile.name;
+                newUser.save(function(err) {
+                    if (err)
+                        throw err;
+                })
+                return done(null, newUser);
+            }
+        })
 
         done(null, profile);
     });

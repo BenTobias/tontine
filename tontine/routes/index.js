@@ -35,8 +35,8 @@ router.post('/register', function(req, res) {
 });
 
 
-router.get('/auth/yammer', function(res, req){
-res.render('login', {});
+router.get('/auth/yammer', passport.authenticate('yammer'), function(req, res){
+
 });
 
 router.get('/auth/yammer/callback', passport.authenticate('yammer', {failureRedirect: '/login'}),
@@ -80,7 +80,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
 
       if (req.isAuthenticated())
         return next();
-      res.redirect('/');
+      res.redirect('/login');
     };
 
 
