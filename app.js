@@ -59,19 +59,15 @@ passport.deserializeUser(function(id, done){
     });
 });
 
-<<<<<<< HEAD:tontine/app.js
-passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret: YAMMER_CONSUMER_SECRET, callbackURL: "/"},
- function(accessToken, refreshToken, profile, done){
-=======
+
 passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret:
 YAMMER_CONSUMER_SECRET, callbackURL: "/"}, function(accessToken, refreshToken, profile, done){
->>>>>>> e9b43ec28a1dd15474267a1ddb8c6a1c4454de10:app.js
     process.nextTick(function(){
         console.log("strategy");
         console.log(profile);
         console.log(accessToken);
         console.log(refreshToken);
-        User.findOne({ 'yammer.id' : profile:id }, function(err, user) {
+        User.findOne({ 'yammer.id' : profile.id }, function(err, user) {
             if (err)
                 return done(err);
 
@@ -79,7 +75,7 @@ YAMMER_CONSUMER_SECRET, callbackURL: "/"}, function(accessToken, refreshToken, p
                 return done(null, user);
             }
             else {
-                var newUser = new User();`
+                var newUser = new User();
 
                 newUser.yammer.id = profile.id;
                 newUser.yammer.token = token;

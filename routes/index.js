@@ -36,11 +36,12 @@ router.post('/register', function(req, res) {
 
 
 router.get('/auth/yammer', passport.authenticate('yammer'), function(req, res){
-
+console.log("getting yammer page");
 });
 
 router.get('/auth/yammer/callback', passport.authenticate('yammer', {failureRedirect: '/login'}),
   function(req, res) {
+    console.log("got here");
     res.redirect('/');
   });
 
