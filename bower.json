@@ -1,0 +1,21 @@
+{
+  "name": "tontine",
+  "version": "0.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.10.2",
+    "bootstrap": "~3.0.0",
+    "jquery-ui": "1.10.3",
+    "express": "latest",
+    "generator-mongoose-plugin": "latest",
+    "requirejs": "latest"
+  },
+  "main": "main.js"
+}
