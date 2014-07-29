@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+#header {
+    width: 100%;
+    text-align: center;
+}
+
+.header-text {
+    font-size: 40px;
+}
