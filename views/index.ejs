@@ -20,13 +20,29 @@
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body id="page-top" class="container-fluid" data-spy="scroll" data-target=".navbar-custom">
 
     <div id="header">
         <div class="header-text">Tontine</div>
     </div>
 
-    <div id="infobar">
+    <div id="infobar" class="row">
+        <div class="col-md-4">
+            <button type="submit" class="infobar-add-btn btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+
+    <div class="col-md-4">
+        <form role="form">
+          <div class="infobar-form form-group">
+            <input type="text" class="form-control" id="infobar-searchbox" placeholder="Search">
+          </div>
+      </form>
+    </div>
+
+      <div class="col-md-4">
+      </div>
     </div>
 
 
