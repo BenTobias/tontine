@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
+var httpreq = require('httpreq');
 
 
 
@@ -35,15 +36,48 @@ router.post('/register', function(req, res) {
 });
 
 
-router.get('/auth/yammer', passport.authenticate('yammer'), function(req, res){
-console.log("getting yammer page");
+router.get('/yammer', function(req, res) {
+  var userFields;
+  var yammerCode = req.query.code;
+  var getYammerFieldsAddress = "http://www.yammer.com//oauth2/access_token.json?client_id=OfONHDZ938SqEUudZF2dw&client_secret=0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4&code=";
+  getYammerFieldsAddress += yammerCode;
+  httpreq.get(getYammerFieldsAddress, function(err, response) {
+    if (err) return console.log(err);
+    var yammerUserInfo = JSON.parse(response.body);
+    var yammerId = yammerUserInfo.user.id;
+    var mugshot = yammerUserInfo.user.mugshot_url;
+    var yammerAccessToken = yammerUserInfo.access_token.token;
+    var yammerFullName = yammerUserInfo.user.full_name;
+
+    User.findOne({'_id' : yammerId}, function(err, user) {
+      if (err)
+        return done(err);
+
+      if (user) {
+        user.access_token = yammerAccessToken;
+        return done(null, user);
+      }
+      else {
+        var newUser = new User();
+        newUser._id = yammerId;
+        newUser.access_token = yammerAccessToken;
+        newUser.username = yammerFullName;
+        newUser.photo = mugshot;
+        newUser.save(function(err) {
+          if (err) 
+            throw err;
+          return done(null, user);
+        });
+      }
+    });
+
+
+  });
+  res.render('yammer',{});
+
 });
 
-router.get('/auth/yammer/callback', passport.authenticate('yammer', {failureRedirect: '/login'}),
-  function(req, res) {
-    console.log("got here");
-    res.redirect('/');
-  });
+
 
 
 router.get('/login', function(req, res) {
@@ -56,7 +90,8 @@ router.post('/login', passport.authenticate('yammer', {
   failureFlash : true
 }));
 
-router.get('/profile', isLoggedIn, function(req, res) {
+router.get('/profile', function(req, res) {
+  isYammerLoggedIn();
   res.render('profile.ejs', {
       user : req.user // get the user out of session and pass to template
     });
@@ -83,6 +118,22 @@ router.get('/profile', isLoggedIn, function(req, res) {
         return next();
       res.redirect('/login');
     };
+
+    function isYammerLoggedIn() {
+      return yam.getLoginStatus(
+        function(response) {
+          if (response.authResponse) {
+            console.log("logged in");
+        console.dir(response); //print user information to the console
+      }
+    else { //authResponse = false if the user is not logged in, or is logged in but hasn't authorized your app yet
+      console.log("logged out");
+  }
+}
+)();
+}
+
+
 
 
 

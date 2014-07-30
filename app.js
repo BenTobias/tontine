@@ -61,37 +61,13 @@ passport.deserializeUser(function(id, done){
 
 
 passport.use(new YammerStrategy({clientID: YAMMER_CONSUMER_KEY, clientSecret:
-YAMMER_CONSUMER_SECRET, callbackURL: "/"}, function(accessToken, refreshToken, profile, done){
-    process.nextTick(function(){
-        console.log("strategy");
-        console.log(profile);
-        console.log(accessToken);
-        console.log(refreshToken);
-        User.findOne({ 'yammer.id' : profile.id }, function(err, user) {
-            if (err)
-                return done(err);
-
-            if (user) {
-                return done(null, user);
-            }
-            else {
-                var newUser = new User();
-
-                newUser.yammer.id = profile.id;
-                newUser.yammer.token = token;
-                newUser.facebook.name = profile.name;
-                newUser.save(function(err) {
-                    if (err)
-                        throw err;
-                })
-                return done(null, newUser);
-            }
+    YAMMER_CONSUMER_SECRET, callbackURL: "/auth/yammer/callback"}, 
+    function(accessToken, refreshToken, profile, done){
+        User.findOrCreate({ 'yammer.id' : profile.id}, function(err, user){
+            return done(err, user);
         })
-
-        done(null, profile);
-    });
-}
-));
+    }
+    ));
 
 mongoose.connect('mongodb://localhost/tontine');
 
