@@ -10,11 +10,13 @@ var httpreq = require('httpreq');
 router.get('/', function (req, res) {
   console.log("before");
   var currentUser = null;
+  var authentication = false;
   if (req.session.currentUser) {
     currentUser = req.session.currentUser;
+    authentication = true;
     console.log("loggin here");
   }
-  res.render('index', { tontineUser : currentUser, authenticated: req.session.authenticated });
+  res.render('index', { tontineUser : currentUser, authenticated: authentication });
 
 });
 
