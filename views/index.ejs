@@ -201,7 +201,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <h3 class="modal-header add-item-modal-header">Add New Item</h4>
-                <form role="form">
+                <form role="form" id="add-item-modal-form-container">
                     <div class="modal-body">
                         <div class="add-item-modal-form form-group">
                             <label class="add-item-modal-form-label" for="add-item-modal-form-title">Item Title</label>
@@ -210,27 +210,25 @@
                             <label class="add-item-modal-form-label" for="add-item-modal-form-description">Item Description</label>
                             <textarea type="text" class="form-control add-item-modal-form-input" id="add-item-modal-form-description" placeholder="Description"></textarea>
 
+                            <label class="add-item-modal-form-label" for="add-item-modal-form-tags">Item Tags</label>
+                            <input type="text" class="form-control add-item-modal-form-input" id="add-item-modal-form-tags" placeholder="Outdoors, Eating">
+
                             <label class="add-item-modal-form-label" for="add-item-modal-form-participants">Minimum Number of Participants</label>
                             <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-participants" placeholder="10">
 
                             <label class="add-item-modal-form-label" for="add-item-modal-form-cost">Cost Per Person</label>
                             <div class="input-group add-item-modal-form-input">
                                 <div class="input-group-addon">$</div>
-                                <input type="number" class="form-control " id="add-item-modal-form-cost" placeholder="99">
+                                <input type="number" class="form-control " id="add-item-modal-form-cost" placeholder="99.99">
                             </div>
 
-                            <label class="add-item-modal-form-label" for="add-item-modal-form-deposit-percentage">Deposit Percentage</label>
-                            <select class="form-control add-item-modal-form-input" id="add-item-modal-form-deposit-percentage">
-                              <option>25%</option>
-                              <option>50%</option>
-                              <option>75%</option>
-                              <option>100%</option>
-                            </select>
+                            <label class="add-item-modal-form-label" for="add-item-modal-form-reputation">Reputation</label>
+                            <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-reputation" placeholder="100">
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Submit</button>
+                        <button type="button" class="add-item-modal-form-submit-btn btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
