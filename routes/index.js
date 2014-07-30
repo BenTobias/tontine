@@ -9,6 +9,28 @@ var http = require('http');
 
 
 router.get('/', function (req, res) {
+  var itemTester = {
+    title: "String",
+    titleKey: "String",
+    description: "String",
+    cost: 0,
+    startTime: 7/30/2014,
+    endTime: 8/7/2015,
+    userId: "String",
+    participants: ["bob", "jane"],
+    keywords: ["skydiving"],
+    photo_url: "String"
+};
+console.log(itemTester);
+
+itemTester.save(function(err){
+  if (err) console.log(err);
+});
+
+console.log("Winning");
+console.log(Item.search("blah"));
+
+
   console.log("before");
   var currentUser = null;
   var authentication = false;
@@ -62,6 +84,7 @@ var req = http.request(options, function(res) {
     var responseString = '';
 
     res.on('data', function(data) {
+      console.log("data coming in");
       responseString += data;
   });
 
@@ -107,14 +130,9 @@ router.post('/additem', function(req, res) {
   var newItem = new Item();
   for (field in newItem) {
     newItem.field = req.body[field];
-<<<<<<< HEAD
-  } 
-  //OR 
-  newItem.save(function(err) {
-=======
+
 }
 newItem.save(function(err) {
->>>>>>> 0efc76d22e95abe8b731ea932086d9e5dd391bc3
     if (err){
       console.log(err);
       throw err;
@@ -125,17 +143,14 @@ newItem.save(function(err) {
 
 router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
-    return matching_results;
-  };
-
+  Item.search(keyword);
 });
 
 router.get('/yammer', function(req, res) {
   var userFields;
   var currentUser;
   var yammerCode = req.query.code;
-  var getYammerFieldsAddress = "http://www.yammer.com//oauth2/access_token.json?client_id=OfONHDZ938SqEUudZF2dw&client_secret=0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4&code=";
+  var getYammerFieldsAddress = "http://www.yammer.com/oauth2/access_token.json?client_id=OfONHDZ938SqEUudZF2dw&client_secret=0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4&code=";
   getYammerFieldsAddress += yammerCode;
   httpreq.get(getYammerFieldsAddress, function(err, response) {
     if (err) return console.log(err);
