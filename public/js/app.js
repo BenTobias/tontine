@@ -1,5 +1,5 @@
 // Filename: app.js
-define([
+trequire.define([
   'jquery',
   'underscore',
   'backbone',

@@ -1,7 +1,7 @@
 // Filename: main.js
 
 // Require.js allows us to configure shortcut alias
-require.config({
+trequire.require.config({
   paths: {
     jquery: 'lib/jquery/jquery.min',
     underscore: 'lib/underscore/underscore.min',
@@ -10,7 +10,7 @@ require.config({
 
 });
 
-require([
+trequire.require([
     // Load our app module and pass it to our definition function
     'app',
     ], function(App){
