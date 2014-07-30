@@ -28,7 +28,7 @@ router.get('/register', function(req, res) {
 
 router.get('/card', function(req, res) {
 
-  res.render('card', {info:"stuff"});
+  res.render('card', { });
 
 });
 
