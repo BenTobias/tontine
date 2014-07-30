@@ -7,7 +7,13 @@ var httpreq = require('httpreq');
 
 
 router.get('/', function (req, res) {
-  res.render('index', { user : req.user, title: "blah" });
+  
+  console.log(req.session.currentUser);
+  if (req.session.currentUser) {
+    console.log(req.currentUser);
+    console.log("loggin here");
+  }
+  res.render('index', { tontineUser : req.user, authenticated: false });
 
 });
 
@@ -38,6 +44,7 @@ router.post('/register', function(req, res) {
 
 router.get('/yammer', function(req, res) {
   var userFields;
+  var currentUser;
   var yammerCode = req.query.code;
   var getYammerFieldsAddress = "http://www.yammer.com//oauth2/access_token.json?client_id=OfONHDZ938SqEUudZF2dw&client_secret=0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4&code=";
   getYammerFieldsAddress += yammerCode;
@@ -48,33 +55,43 @@ router.get('/yammer', function(req, res) {
     var mugshot = yammerUserInfo.user.mugshot_url;
     var yammerAccessToken = yammerUserInfo.access_token.token;
     var yammerFullName = yammerUserInfo.user.full_name;
-
-    User.findOne({'_id' : yammerId}, function(err, user) {
+    User.findOne({'id' : yammerId}, function(err, user) {
       if (err)
-        return done(err);
-
+        console.log(err);
       if (user) {
         user.access_token = yammerAccessToken;
-        return done(null, user);
+        console.log("User has been created");
+        currentUser = user;
       }
       else {
         var newUser = new User();
-        newUser._id = yammerId;
+        newUser.id = yammerId;
         newUser.access_token = yammerAccessToken;
         newUser.username = yammerFullName;
         newUser.photo = mugshot;
+        console.log(newUser);
         newUser.save(function(err) {
           if (err) 
             throw err;
-          return done(null, user);
+          currentUser = user;
         });
       }
+      req.session.currentUser = currentUser;
+      req.session.name = "Testing";
+      console.log(req.session.name);
+      console.log(req.session.currentUser);
+       res.render('index', {tontineUser : currentUser, authenticated: true });
     });
 
 
   });
-  res.render('yammer',{});
+  console.log(currentUser);
 
+
+});
+
+router.get('newAddress', function(req, res) {
+  res.render('yammer');
 });
 
 

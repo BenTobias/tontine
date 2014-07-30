@@ -5,9 +5,13 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var User = new Schema({
 	username: String,
-	password: String,
-	prof_type: Boolean,
-	categories : []
+	photo: String,
+	access_token: String, 
+	id : Number
+
+
+
+
 	//add into the model update field in update
 	//add into profile views
 
@@ -16,6 +20,7 @@ var User = new Schema({
 		//return Hash.isHashed(newValue) ? newValue : Hash.generate(newValue);
 	}
 );
+
 
 
 User.plugin(passportLocalMongoose);
