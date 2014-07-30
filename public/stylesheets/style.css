@@ -6,3 +6,29 @@ body {
 a {
   color: #00B7FF;
 }
+
+#header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-text {
+    font-size: 40px;
+}
+
+/* Info Bar Styles */
+
+.infobar-add-btn {
+    display: inline-block;
+}
+
+#infobar form {
+    width: 400px;
+    display: inline-block;
+}
+
+#infobar-searchbox {
+    width: 400px;
+}
+
