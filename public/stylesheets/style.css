@@ -32,3 +32,25 @@ a {
     width: 400px;
 }
 
+#add-item-modal {
+    width: 100%;
+}
+
+.add-item-modal-header {
+    margin-left: 20px;
+}
+
+.add-item-modal-form {
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.add-item-modal-form-label {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.add-item-modal-form-input {
+    margin-bottom: 10px;
+}
