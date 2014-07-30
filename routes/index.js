@@ -5,7 +5,7 @@ var User = require('../models/user');
 var Item = require('../models/items');
 var httpreq = require('httpreq');
 var http = require('http');
-
+var app = express();
 
 
 router.get('/', function (req, res) {
@@ -23,12 +23,12 @@ router.get('/', function (req, res) {
 };
 console.log(itemTester);
 
-itemTester.save(function(err){
-  if (err) console.log(err);
-});
+// itemTester.save(function(err){
+//   if (err) console.log(err);
+// });
 
 console.log("Winning");
-console.log(Item.search("blah"));
+// console.log(Item.search("blah"));
 
 
   console.log("before");
@@ -127,23 +127,17 @@ User.register(new User({ username : req.body.username }), req.body.password, fun
 });
 
 router.post('/additem', function(req, res) {
-  var newItem = new Item();
-  for (field in newItem) {
-    newItem.field = req.body[field];
-
-}
-newItem.save(function(err) {
-    if (err){
-      console.log(err);
-      throw err;
-  }
-})
+    console.log('posting');
+    console.log(req.body);
 });
 
 
 router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  Item.search(keyword);
+  // Item.search(keyword);
+  // Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
+  //   return matching_results;
+  // };
 });
 
 router.get('/yammer', function(req, res) {
