@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Tontine</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body id="page-top" class="container-fluid" data-spy="scroll" data-target=".navbar-custom">
+
+    <div id="header">
+        <div class="header-text">Tontine</div>
+    </div>
+
+    <div id="infobar" class="row">
+        <div class="col-md-2"></div>
+
+        <div class="col-md-2">
+            <button type="submit" class="infobar-add-btn btn btn-default">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+
+        </div>
+
+    <div class="col-md-4">
+        <form role="form">
+          <div class="infobar-form form-group">
+            <input type="text" class="form-control" id="infobar-searchbox" placeholder="Search">
+          </div>
+      </form>
+    </div>
+
+      <div class="col-md-4">
+        <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
+      </div>
+    </div>
+
+
+	<div id="wrapper">
+		<div class="pin">
+			<div class="profile">
+                <ul>
+                    <li>
+                      <img src="http://lorempixum.com/100/100/nature/1">
+                      <h2>Skydiving!</h2>
+                      <h4><b>Suggested by Edgar Wang</b></h4>
+                                  <h6>Parachuting, or skydiving, is the action sport of exiting an aircraft and returning to Earth with the aid of gravity, then slowing down during the last part of the descent by using a parachute. It may or may not involve a certain amount of free-fall, a time during which the parachute has not been deployed and the body gradually accelerates to terminal velocity.
+                    </h6>
+                     
+                    <h3>Time Left: 3 days</h3>
+                    <h3>Minimum: $10</h3>
+                    <h3>Current Backers:</h3>
+                    <div class="backers">
+                    <ul>
+                    <li><a href="#"><img src="http://placehold.it/20x20"></a></li>
+                    <li><a href="#"><img src="http://placehold.it/20x20"></a></li>
+                    <li><a href="#"><img src="http://placehold.it/20x20"></a></li>
+                    </ul>
+                    </div>
+                    </li>
+                </ul>
+			</div>
+		</div>
+	</div>
+
+    <div id="addItemModal">
+        <!-- HI -->
+    </div>
+
+    <!-- Core JavaScript Files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <script type="text/javascript" data-app-id="YOUR-APP-CLIENT-ID" src="https://assets.yammer.com/assets/platform_js_sdk.js"></script>
+    <script> yam.connect.loginButton('#yammer-login', function (resp) { if (resp.authResponse) { document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!'; } }); </script>
+</body>
+
+</html>
