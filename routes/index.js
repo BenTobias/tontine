@@ -109,12 +109,18 @@ User.register(new User({ username : req.body.username }), req.body.password, fun
 });
 });
 
-router.post('/newitem', function(req, res) {
+router.post('/additem', function(req, res) {
   var newItem = new Item();
   for (field in newItem) {
     newItem.field = req.body[field];
+<<<<<<< HEAD
+  } 
+  //OR 
+  newItem.save(function(err) {
+=======
 }
 newItem.save(function(err) {
+>>>>>>> 0efc76d22e95abe8b731ea932086d9e5dd391bc3
     if (err){
       console.log(err);
       throw err;
@@ -122,26 +128,14 @@ newItem.save(function(err) {
 })
 });
 
-router.get('/search', function(req, res) {      
-  res.render('search', {});
-});
 
-/*router.post('/search', function(req, res) {
+router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  var specialSearch = req.body.isSpecialSearch;
-  if (!specialSearch) {
+  Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
+    return matching_results;
+  };
 
-  }
-  else
-    Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
-      res.render('searchresults', {matching_results: matching_results);
-    });
-
-    User.find({education_key : { $regex: new RegExp("^" + university)}}, function(err, matching_users){
-      res.render('searchresults', {user_array : matching_users, school : req.body.university});
-    });
-
-});*/
+});
 
 router.get('/yammer', function(req, res) {
   var userFields;
