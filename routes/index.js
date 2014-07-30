@@ -9,26 +9,7 @@ var http = require('http');
 
 
 router.get('/', function (req, res) {
-  var itemTester = {
-    title: "String",
-    titleKey: "String",
-    description: "String",
-    cost: 0,
-    startTime: 7/30/2014,
-    endTime: 8/7/2015,
-    userId: "String",
-    participants: ["bob", "jane"],
-    keywords: ["skydiving"],
-    photo_url: "String"
-};
-console.log(itemTester);
 
-itemTester.save(function(err){
-  if (err) console.log(err);
-});
-
-console.log("Winning");
-console.log(Item.search("blah"));
 
 
   console.log("before");
