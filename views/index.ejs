@@ -9,6 +9,7 @@
 
     <title>Tontine</title>
 
+
     <!-- Bootstrap Core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 
@@ -27,7 +28,7 @@
 <body id="page-top" class="container-fluid" data-spy="scroll" data-target=".navbar-custom">
 
     <div id="header">
-        <div class="header-text">Tontine</div>
+        <div class="header-text"><a href = "/">Tontine</a></div>
     </div>
 
     <div id="infobar" class="row">
@@ -48,10 +49,18 @@
       </form>
     </div>
 
-      <div class="col-md-4">
+
+    <% if (authenticated)  {%>
+    <img width="300" height="75" src="<%= tontineUser.photo %>">
+    <% }else {%>
+    <div class="col-md-4">
         <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
       </div>
     </div>
+    <%}%>
+
+
+      
 
 
 
@@ -103,8 +112,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <script type="text/javascript" src="https://assets.yammer.com/assets/platform_embed.js"></script>
-    <script type="text/javascript" data-app-id="EP8u7imjG4XhMpmPbe9J1Q" src="https://assets.yammer.com/assets/platform_js_sdk.js"></script>
+    <script type="text/javascript" data-app-id="OfONHDZ938SqEUudZF2dw" src="https://assets.yammer.com/assets/platform_js_sdk.js"></script>
     <script> yam.connect.loginButton('#yammer-login', function (resp) { if (resp.authResponse) { document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!'; } }); </script>
+
 </body>
 
 </html>
