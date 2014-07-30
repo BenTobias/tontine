@@ -4,6 +4,7 @@ var passport = require('passport');
 var User = require('../models/user');
 var Item = require('../models/items');
 var httpreq = require('httpreq');
+var http = require('http');
 
 
 
@@ -27,6 +28,64 @@ router.get('/register', function(req, res) {
 });
 
 
+
+
+router.post('/postMessage', function(req, res) {
+  var currentUser = req.session.currentUser;
+  var postInformation = {
+    "activity":{
+      "actor":{"name": currentUser.username,
+      "email": currentUser.email},
+      "action":"create",
+      "object": {
+        "url":"blahblah",
+        "title":"Finding card Item"
+      },
+      "message":"Hey let's do this",
+    }
+  };
+  var resultObject;
+  var postString = JSON.stringify(postInformation);
+  var headers = {
+    'Content-Type': 'application/json',
+    'Authorization': "Bearer " + currentUser.access_token
+  };
+  var options = {
+    host: 'www.yammer.com',
+    path: '/api/v1/activity',
+    method: 'POST',
+    headers: headers
+  };
+
+  var req = http.request(options, function(res) {
+    res.setEncoding('utf-8');
+    var responseString = '';
+
+    res.on('data', function(data) {
+      responseString += data;
+    });
+
+    res.on('end', function(){
+      console.log("done");
+      console.log(responseString);
+    });
+  });
+
+
+  req.on('error', function(e) {
+    console.log(e);
+  });
+
+  req.end();
+  res.redirect('/');
+
+  
+});
+
+
+
+
+router.post('/')
 router.post('/register', function(req, res) {
   console.log(req.body.username);
   console.log(req.body.password);
@@ -57,6 +116,26 @@ router.post('/newitem', function(req, res) {
   })
 });
 
+router.get('/search', function(req, res) {      
+  res.render('search', {});
+});
+
+/*router.post('/search', function(req, res) {
+  var keyword = req.body.keyword;
+  var specialSearch = req.body.isSpecialSearch;
+  if (!specialSearch) {
+
+  }
+  else
+    Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
+      res.render('searchresults', {matching_results: matching_results);
+    });
+
+    User.find({education_key : { $regex: new RegExp("^" + university)}}, function(err, matching_users){
+      res.render('searchresults', {user_array : matching_users, school : req.body.university});
+    });
+
+});*/
 
 router.get('/yammer', function(req, res) {
   var userFields;
@@ -71,6 +150,8 @@ router.get('/yammer', function(req, res) {
     var mugshot = yammerUserInfo.user.mugshot_url;
     var yammerAccessToken = yammerUserInfo.access_token.token;
     var yammerFullName = yammerUserInfo.user.full_name;
+    var yammerEmail = yammerUserInfo.user.contact.email_addresses[0].address;
+
     User.findOne({'id' : yammerId}, function(err, user) {
       if (err)
         console.log(err);
@@ -86,6 +167,7 @@ router.get('/yammer', function(req, res) {
         newUser.access_token = yammerAccessToken;
         newUser.username = yammerFullName;
         newUser.photo = mugshot;
+        newUser.email = yammerEmail;
         console.log(newUser);
         newUser.save(function(err) {
           if (err) 
@@ -95,7 +177,7 @@ router.get('/yammer', function(req, res) {
       }
       req.session.currentUser = currentUser;
       req.session.authenticated = true;
-       res.render('index', {tontineUser : currentUser, authenticated: req.session.authenticated });
+      res.render('index', {tontineUser : currentUser, authenticated: req.session.authenticated });
     });
 
 
