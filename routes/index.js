@@ -9,6 +9,28 @@ var http = require('http');
 
 
 router.get('/', function (req, res) {
+  var itemTester = {
+    title: "String",
+    titleKey: "String",
+    description: "String",
+    cost: 0,
+    startTime: 7/30/2014,
+    endTime: 8/7/2015,
+    userId: "String",
+    participants: ["bob", "jane"],
+    keywords: ["skydiving"],
+    photo_url: "String"
+};
+console.log(itemTester);
+
+itemTester.save(function(err){
+  if (err) console.log(err);
+});
+
+console.log("Winning");
+console.log(Item.search("blah"));
+
+
   console.log("before");
   var currentUser = null;
   var authentication = false;
@@ -62,6 +84,7 @@ var req = http.request(options, function(res) {
     var responseString = '';
 
     res.on('data', function(data) {
+      console.log("data coming in");
       responseString += data;
   });
 
@@ -103,10 +126,11 @@ User.register(new User({ username : req.body.username }), req.body.password, fun
 });
 });
 
-router.post('/newitem', function(req, res) {
+router.post('/additem', function(req, res) {
   var newItem = new Item();
   for (field in newItem) {
     newItem.field = req.body[field];
+
 }
 newItem.save(function(err) {
     if (err){
@@ -116,32 +140,17 @@ newItem.save(function(err) {
 })
 });
 
-router.get('/search', function(req, res) {      
-  res.render('search', {});
-});
 
-/*router.post('/search', function(req, res) {
+router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  var specialSearch = req.body.isSpecialSearch;
-  if (!specialSearch) {
-
-  }
-  else
-    Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
-      res.render('searchresults', {matching_results: matching_results);
-    });
-
-    User.find({education_key : { $regex: new RegExp("^" + university)}}, function(err, matching_users){
-      res.render('searchresults', {user_array : matching_users, school : req.body.university});
-    });
-
-});*/
+  Item.search(keyword);
+});
 
 router.get('/yammer', function(req, res) {
   var userFields;
   var currentUser;
   var yammerCode = req.query.code;
-  var getYammerFieldsAddress = "http://www.yammer.com//oauth2/access_token.json?client_id=OfONHDZ938SqEUudZF2dw&client_secret=0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4&code=";
+  var getYammerFieldsAddress = "http://www.yammer.com/oauth2/access_token.json?client_id=OfONHDZ938SqEUudZF2dw&client_secret=0e5VaHJOr2yqMXlzLq0SbAkA4PxiGKT7TOV4jHDgL4&code=";
   getYammerFieldsAddress += yammerCode;
   httpreq.get(getYammerFieldsAddress, function(err, response) {
     if (err) return console.log(err);
