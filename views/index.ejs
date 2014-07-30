@@ -8,12 +8,7 @@
     <meta name="author" content="">
 
     <title>Tontine</title>
-    <% if (authenticated)  {%>
-    <p> User has been logged in<p>
-    <p> <%= tontineUser.username %> and <%= tontineUser.photo %><p>
-    <% }else {%>
-    <p>NOT LOGGED IN<p>
-    <%}%>
+
 
     <!-- Bootstrap Core CSS -->
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -30,7 +25,7 @@
 <body id="page-top" class="container-fluid" data-spy="scroll" data-target=".navbar-custom">
 
     <div id="header">
-        <div class="header-text">Tontine</div>
+        <div class="header-text"><a href = "/">Tontine</a></div>
     </div>
 
     <div id="infobar" class="row">
@@ -51,10 +46,18 @@
       </form>
     </div>
 
-      <div class="col-md-4">
+
+    <% if (authenticated)  {%>
+    <img width="300" height="75" src="<%= tontineUser.photo %>">
+    <% }else {%>
+    <div class="col-md-4">
         <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
       </div>
     </div>
+    <%}%>
+
+
+      
 
 
 

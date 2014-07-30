@@ -7,13 +7,13 @@ var httpreq = require('httpreq');
 
 
 router.get('/', function (req, res) {
-  
-  console.log(req.session.currentUser);
+  console.log("before");
+  var currentUser = null;
   if (req.session.currentUser) {
-    console.log(req.currentUser);
+    currentUser = req.session.currentUser;
     console.log("loggin here");
   }
-  res.render('index', { tontineUser : req.user, authenticated: false });
+  res.render('index', { tontineUser : currentUser, authenticated: req.session.authenticated });
 
 });
 
@@ -60,6 +60,7 @@ router.get('/yammer', function(req, res) {
         console.log(err);
       if (user) {
         user.access_token = yammerAccessToken;
+        user.photo = mugshot;
         console.log("User has been created");
         currentUser = user;
       }
@@ -77,15 +78,12 @@ router.get('/yammer', function(req, res) {
         });
       }
       req.session.currentUser = currentUser;
-      req.session.name = "Testing";
-      console.log(req.session.name);
-      console.log(req.session.currentUser);
-       res.render('index', {tontineUser : currentUser, authenticated: true });
+      req.session.authenticated = true;
+       res.render('index', {tontineUser : currentUser, authenticated: req.session.authenticated });
     });
 
 
   });
-  console.log(currentUser);
 
 
 });
