@@ -5,12 +5,11 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var Item = new Schema({
 	title: String,
 	description: String,
-	cost: Double,
-	startTime: DateTime,
-	endTime: DateTime,
+	cost: Number,
+	startTime: Date,
+	endTime: Date,
 	userId: String
-	}
-);
+});
 
 Item.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Item', Item);
