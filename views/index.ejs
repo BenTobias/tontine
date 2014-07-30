@@ -49,15 +49,22 @@
       </form>
     </div>
 
+    <div class="col-md-1"> </div>
 
-    <% if (authenticated)  {%>
-    <img width="300" height="75" src="<%= tontineUser.photo %>">
-    <% }else {%>
-    <div class="col-md-4">
-        <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
+    <div class="col-md-3">
+        <% if (authenticated)  {%>
+            <img width="45" height="45" src="<%= tontineUser.photo %>">
+        <% }else {%>
+            <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
+        <%}%>
       </div>
     </div>
-    <%}%>
+
+
+    <h2> Post form</h2> 
+    <form method="post" action="/postMessage"> 
+    <input type=submit value="Submit Post"> 
+    </form>
 
     <div>
     <button onclick="showBiggerCard()">THIS IS WHEN THE USER HAS CLICKED ON A SPECIFIC ITEM</button>

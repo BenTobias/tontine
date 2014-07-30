@@ -1,5 +1,5 @@
 // Filename: views/projects/list
-define([
+trequire.define([
   'jquery',
   'underscore',
   'backbone'

@@ -1,0 +1,11 @@
+
+trequire.js
+----------------
+lib/require/require.js
+lib/jquery/jquery.min.js
+lib/underscore/underscore.min.js
+lib/backbone/backbone.min.js
+views/index.js
+router.js
+app.js
+main.js

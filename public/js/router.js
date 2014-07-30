@@ -1,5 +1,5 @@
 // Filename: router.js
-define([
+trequire.define([
   'jquery',
   'underscore',
   'backbone',

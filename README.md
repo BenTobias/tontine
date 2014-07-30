@@ -17,3 +17,10 @@ Optional:
 ```bash
 npm install nodemon
 ```
+
+Set up requirejs namespace:
+
+```bash
+node r.js -o build.js
+```
+in public/

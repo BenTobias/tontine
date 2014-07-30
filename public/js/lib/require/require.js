@@ -1,3 +1,5 @@
+var trequire;(function () { if (!trequire || !trequire.requirejs) {
+if (!trequire) { trequire = {}; } else { require = trequire; }
 /** vim: et:ts=4:sw=4:sts=4
  * @license RequireJS 2.1.14 Copyright (c) 2010-2014, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
@@ -1746,7 +1748,7 @@ var requirejs, require, define;
     };
 
     /**
-     * Support require.config() to make it easier to cooperate with other
+     * Support trequire.require.config() to make it easier to cooperate with other
      * AMD loaders on globally agreed names.
      */
     req.config = function (config) {
@@ -2074,3 +2076,7 @@ var requirejs, require, define;
     //Set up with config info.
     req(cfg);
 }(this));
+
+trequire.requirejs = requirejs;trequire.require = require;trequire.define = define;
+}
+}());
