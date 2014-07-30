@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
+var Item = require('../models/items');
 var httpreq = require('httpreq');
 
 
@@ -39,6 +40,19 @@ router.post('/register', function(req, res) {
       res.redirect('/');
     });
   });
+});
+
+router.post('/newitem', function(req, res) {
+  var newItem = new Item();
+  for (field in newItem) {
+    newItem.field = req.body[field];
+  }
+  newItem.save(function(err) {
+    if (err){
+      console.log(err);
+      throw err;
+    }
+  })
 });
 
 
