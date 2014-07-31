@@ -309,7 +309,7 @@ body {
 /* ---- isotope ---- */
 
 .isotope {
-  border: 1px solid #333;
+  /*border: 1px solid #333;*/
 }
 
 /* clear fix */
@@ -324,8 +324,8 @@ body {
 .element-item {
   position: relative;
   float: left;
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 300px;
   margin: 5px;
   padding: 10px;
   background: #888;
@@ -337,7 +337,7 @@ body {
   padding: 0;
 }
 
-.element-item .name {
+/*.element-item .name {
   position: absolute;
 
   left: 10px;
@@ -346,28 +346,24 @@ body {
   letter-spacing: 0;
   font-size: 12px;
   font-weight: normal;
-}
+}*/
 
-.element-item .symbol {
+.element-item .name {
   position: absolute;
   left: 10px;
   top: 0px;
-  font-size: 42px;
+  font-size: 35px;
   font-weight: bold;
   color: white;
 }
 
-.element-item .number {
+.element-item .cost {
   position: absolute;
   right: 8px;
   top: 5px;
-}
-
-.element-item .weight {
-  position: absolute;
-  left: 10px;
-  top: 76px;
-  font-size: 12px;
+  text-decoration: bold;
+  font-size: 25px;
+  color: white;
 }
 
 .element-item.alkali          { background: #F00; background: hsl(   0, 100%, 50%); }
