@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 var Item = require('../models/items');
+var ItemController = require('../controllers/itemController.js');
 var httpreq = require('httpreq');
 var http = require('http');
 var app = express();
@@ -128,16 +129,14 @@ User.register(new User({ username : req.body.username }), req.body.password, fun
 
 router.post('/additem', function(req, res) {
     console.log('posting');
-    console.log(req.body);
+
+    var response = ItemController.addItem(req.body);
+    res.send(response);
 });
 
 
 router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  // Item.search(keyword);
-  // Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
-  //   return matching_results;
-  // };
 });
 
 router.get('/yammer', function(req, res) {
