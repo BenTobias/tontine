@@ -370,7 +370,7 @@ body {
   color: white;
 }
 
-/*<<<<<<< HEAD
+
 .element-item .cost {
   position: absolute;
   right: 8px;
@@ -378,7 +378,8 @@ body {
   text-decoration: bold;
   font-size: 25px;
   color: white;
-=======*/
+  }
+
 
 img{
 	padding:25px;
