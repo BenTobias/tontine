@@ -10,6 +10,7 @@ trequire.define([
 
             events: {
                 'click .infobar-add-btn': 'addItem',
+								'click .symbol': 'showItem'
             },
 
             addItem: function(e) {
@@ -19,6 +20,12 @@ trequire.define([
                 Backbone.history.navigate('/additem', true);
             },
 
+						showItem: function(e) {
+              $('#show-item-modal').modal('show');
+							
+							Backbone.history.navigate('/showitem', true);
+						},
+						
             initialize: function() {
                 $('#add-item-modal').modal('hide');
             }
