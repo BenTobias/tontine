@@ -2,11 +2,6 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 var passportLocalMongoose = require('passport-local-mongoose');
 
-var search = function(keywords) {
-	Item.find({keywords: {$regex: new RegExp("^" + keyword)}}, function(err, matching_results) {
-		return matching_results;
-	});
-};
 
 
 var Item = new Schema({
@@ -22,8 +17,12 @@ var Item = new Schema({
 	photo_url: String
 });
 
+Item.methods.search = function(keywords) {
+	Item.find({keywords: {$regex: new RegExp("^" + keyword)}}, function(err, matching_results) {
+		return matching_results;
+	});
+};
 
-Item.plugin(passportLocalMongoose);
 
 
 
