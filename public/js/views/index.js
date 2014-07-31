@@ -21,6 +21,10 @@ trequire.define([
 
             initialize: function() {
                 $('#add-item-modal').modal('hide');
+
+                $('#add-item-modal').on('hidden.bs.modal', function (e) {
+                    Backbone.history.navigate('/', true);
+                })
             }
         });
 
