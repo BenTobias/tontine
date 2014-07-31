@@ -65,54 +65,94 @@
     <form method="post" action="/postMessage"> 
     <input type=submit value="Submit Post"> 
     </form>
-
-
-      
-<h1>Isotope - layout modes</h1>
-
-<div id="layout-mode-button-group" class="button-group">
-  <button class="button is-checked" data-layout-mode-value="masonry" checked="checked">masonry</button>
-  <button class="button" data-layout-mode-value="fitRows">fitRows</button>
-  <button class="button" data-layout-mode-value="cellsByRow">cellsByRow</button>
-  <button class="button" data-layout-mode-value="vertical"> vertical</button>
-  <button class="button" data-layout-mode-value="masonryHorizontal" data-is-horizontal="true">masonryHorizontal</button>
-  <button class="button" data-layout-mode-value="fitColumns" data-is-horizontal="true">fitColumns</button>
-  <button class="button" data-layout-mode-value="cellsByColumn" data-is-horizontal="true">cellsByColumn</button>
-  <button class="button" data-layout-mode-value="horizontal" data-is-horizontal="true">horizontal</button>
+<div id="sorts" class="button-group">
+  <button class="button is-checked" data-sort-value="original-order">original order</button>
+  <button class="button" data-sort-value="cost">Cost</button>
+  <button class="button" data-sort-value="starttime">Start Time</button>
+  <button class="button" data-sort-value="endtime">End time</button>
 </div>
 
-<div id="isotope-demo" class="isotope">
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="https://adthis.princeton.edu/files/2013/04/DSC_0033.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-  <div class="element-item width2 height2"><img src="http://www.nmoe.org/gallery/2012/wang12.jpg" class="symbol"></div>
-
+<div class="isotope">
+  <div class="element-item transition metal " data-category="transition">
+    <h3 class="name">Movie Marathon</h3>
+    <p class="cost">80</p>
+  </div>
+  <div class="element-item metalloid " data-category="metalloid">
+    <h3 class="name">Soccer</h3>
+    <p class="cost">52</p>
+  </div>
+  <div class="element-item post-transition metal " data-category="post-transition">
+    <h3 class="name">Ultimate Frisbee</h3>
+    <p class="cost">83</p>
+  </div>
+  <div class="element-item post-transition metal " data-category="post-transition">
+    <h3 class="name">Edgar's Birthday Party!</h3>
+    <p class="cost">82</p>
+  </div>
+  <div class="element-item transition metal " data-category="transition">
+    <h3 class="name">Eat in Downtown Mountain View</h3>
+    <p class="cost">79</p>
+  </div>
+  <div class="element-item alkali metal " data-category="alkali">
+    <h3 class="name">Lottery pool</h3>
+		<img src="http://michaelkonik.com/wp-content/uploads/2009/06/Lottery-Mega-Millions.jpg">
+    <p class="cost">19</p>
+  </div>
+  <div class="element-item alkali metal " data-category="alkali">
+    <h3 class="name">Santa Cruz Beach Trip</h3>
+		<img src="http://www.peerfit.com/blog/wp-content/uploads/2013/06/shutterstock-33946915-s_-1.jpg">
+    <p class="cost">11</p>
+  </div>
+  <div class="element-item transition metal " data-category="transition">
+    <h3 class="name">Ping pong tournament</h3>
+    <p class="cost">48</p>
+  </div>
+  <div class="element-item alkaline-earth metal " data-category="alkaline-earth">
+    <h3 class="name">Hot dog eating contest</h3>
+    <p class="cost">20</p>
+  </div>
+  <div class="element-item transition metal " data-category="transition">
+    <h3 class="name">Nerf war</h3>
+    <p class="cost">75</p>
+  </div>
+  <div class="element-item post-transition metal " data-category="post-transition">
+    <h3 class="name">Form a band</h3>
+    <p class="cost">81</p>
+  </div>
+  <div class="element-item metalloid " data-category="metalloid">
+    <h3 class="name">Lunch at Shiro Sushi</h3>
+    <p class="cost">51</p>
+  </div>
+  <div class="element-item transition metal " data-category="transition">
+    <h3 class="name">Ride ducks in San Francisco</h3>
+    <p class="cost">27</p>
+  </div>
+  <div class="element-item lanthanoid metal inner-transition " data-category="lanthanoid">
+    <h3 class="name">Trip to Las Vegas</h3>
+    <p class="cost">70</p>
+  </div>
+  <div class="element-item noble-gas nonmetal " data-category="noble-gas">
+    <h3 class="name">Hiking</h3>
+    <p class="cost">18</p>
+  </div>
+  <div class="element-item diatomic nonmetal " data-category="diatomic">
+    <h3 class="name">Swim across the bay</h3>
+    <p class="cost">7</p>
+  </div>
+  <div class="element-item actinoid metal inner-transition " data-category="actinoid">
+    <h3 class="name">Water polo</h3>
+    <p class="cost">92</p>
+  </div>
+  <div class="element-item actinoid metal inner-transition " data-category="actinoid">
+    <h3 class="name">Laser Tag</h3>
+    <p class="cost">94</p>
+  </div>
 </div>
-
     <div id="add-item-modal" class="modal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <h3 class="modal-header add-item-modal-header">Add New Item</h4>
-                <form role="form" id="add-item-modal-form-container">
+                <form role="form">
                     <div class="modal-body">
                         <div class="add-item-modal-form form-group">
                             <label class="add-item-modal-form-label" for="add-item-modal-form-title">Item Title</label>
@@ -121,25 +161,27 @@
                             <label class="add-item-modal-form-label" for="add-item-modal-form-description">Item Description</label>
                             <textarea type="text" class="form-control add-item-modal-form-input" id="add-item-modal-form-description" placeholder="Description"></textarea>
 
-                            <label class="add-item-modal-form-label" for="add-item-modal-form-tags">Item Tags</label>
-                            <input type="text" class="form-control add-item-modal-form-input" id="add-item-modal-form-tags" placeholder="Outdoors, Eating">
-
                             <label class="add-item-modal-form-label" for="add-item-modal-form-participants">Minimum Number of Participants</label>
                             <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-participants" placeholder="10">
 
                             <label class="add-item-modal-form-label" for="add-item-modal-form-cost">Cost Per Person</label>
                             <div class="input-group add-item-modal-form-input">
                                 <div class="input-group-addon">$</div>
-                                <input type="number" class="form-control " id="add-item-modal-form-cost" placeholder="99.99">
+                                <input type="number" class="form-control " id="add-item-modal-form-cost" placeholder="99">
                             </div>
 
-                            <label class="add-item-modal-form-label" for="add-item-modal-form-reputation">Reputation</label>
-                            <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-reputation" placeholder="100">
+                            <label class="add-item-modal-form-label" for="add-item-modal-form-deposit-percentage">Deposit Percentage</label>
+                            <select class="form-control add-item-modal-form-input" id="add-item-modal-form-deposit-percentage">
+                              <option>25%</option>
+                              <option>50%</option>
+                              <option>75%</option>
+                              <option>100%</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="add-item-modal-form-submit-btn btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>
@@ -150,7 +192,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <h3 class="modal-header add-item-modal-header">Hiking</h3>
-                    <!--<div class="modal-body">
+                    <div class="modal-body">
                         <div class="add-item-modal-form form-group">
                             <label class="add-item-modal-form-label" for="add-item-modal-form-description">Item Description</label>
                             	Hiking in Big Basin! It's going to be a lot of fun!
@@ -171,7 +213,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="add-item-modal-form-submit-btn btn btn-primary">Attend</button>
-                    </div>-->
+                    </div>
             </div>
         </div>
     </div>
@@ -186,69 +228,45 @@
     <script type="text/javascript" data-app-id="OfONHDZ938SqEUudZF2dw" src="https://assets.yammer.com/assets/platform_js_sdk.js"></script>
     <script> yam.connect.loginButton('#yammer-login', function (resp) { if (resp.authResponse) { document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!'; } }); </script>
 
-	<script src="http://isotope.metafizzy.co/beta/isotope.pkgd.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-column/cells-by-column.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-row/cells-by-row.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-fit-columns/fit-columns.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-horizontal/horizontal.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-masonry-horizontal/masonry-horizontal.js"></script>
+<script src="http://isotope.metafizzy.co/beta/isotope.pkgd.js"></script>
+<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-column/cells-by-column.js"></script>
+<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-row/cells-by-row.js"></script>
+<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-fit-columns/fit-columns.js"></script>
+<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-horizontal/horizontal.js"></script>
+<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-masonry-horizontal/masonry-horizontal.js"></script>
 
-	<script>
+<script>
 
-	$( function() {
-	  // init Isotope
-	  var $container = $('#isotope-demo').isotope({
-	    itemSelector: '.element-item',
-	    layoutMode: 'masonry',
-	    masonry: {
-	      columnWidth: 110
-	    },
-	    cellsByRow: {
-	      columnWidth: 220,
-	      rowHeight: 220
-	    },
-	    masonryHorizontal: {
-	      rowHeight: 110
-	    },
-	    cellsByColumn: {
-	      columnWidth: 220,
-	      rowHeight: 220
-	    }
-	  });
+$( function() {
+  // init Isotope
+  var $container = $('.isotope').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows',
+    getSortData: {
+      cost: '.cost parseInt',
+      starttime: '.starttime parseInt',
+      endtime: '.endtime parseInt ',
+    }
+  });
 
-	  var isHorizontal = false;
-	  var $window = $( window );
+  // bind sort button click
+  $('#sorts').on( 'click', 'button', function() {
+    var sortValue = $(this).attr('data-sort-value');
+    $container.isotope({ sortBy: sortValue });
+  });
 
-	  $('#layout-mode-button-group').on( 'click', 'button', function() {
-	    // adjust container sizing if layout mode is changing from vertical or horizontal
-	    var $this = $(this);
-	    var isHorizontalMode = !!$this.attr('data-is-horizontal');
-	    if ( isHorizontal !== isHorizontalMode ) {
-	      // change container size if horiz/vert change
-	      var containerStyle = isHorizontalMode ? {
-	        height: $window.height() * 0.7
-	      } : {
-	        width: 'auto'
-	      };
-	      $container.css( containerStyle );
-	      isHorizontal = isHorizontalMode;
-	    }
-	    // change layout mode
-	    var layoutModeValue = $this.attr('data-layout-mode-value');
-	    $container.isotope({ layoutMode: layoutModeValue });
-	  });  
+  // change is-checked class on buttons
+  $('.button-group').each( function( i, buttonGroup ) {
+    var $buttonGroup = $( buttonGroup );
+    $buttonGroup.on( 'click', 'button', function() {
+      $buttonGroup.find('.is-checked').removeClass('is-checked');
+      $( this ).addClass('is-checked');
+    });
+  });
+  
+});
 
-	  // change is-checked class on buttons
-	  $('.button-group').each( function( i, buttonGroup ) {
-	    var $buttonGroup = $( buttonGroup );
-	    $buttonGroup.on( 'click', 'button', function() {
-	      $buttonGroup.find('.is-checked').removeClass('is-checked');
-	      $( this ).addClass('is-checked');
-	    });
-	  });
-
-	});
-	</script>
+</script>
 </body>
 
 </html>

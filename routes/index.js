@@ -23,13 +23,7 @@ router.get('/', function (req, res) {
 };
 console.log(itemTester);
 
-/*itemTester.save(function(err){
-  if (err) console.log(err);
-});
 
-console.log("Winning");
-console.log(Item.search("blah"));
-*/
 
   console.log("before");
   var currentUser = null;
@@ -49,10 +43,14 @@ router.get('/register', function(req, res) {
 
 });
 
+router.get('/card', function(req, res) {
 
-router.get('/show-item', function(req, res) {
-	
+  res.render('card', { });
+
 });
+
+
+
 
 router.post('/postMessage', function(req, res) {
   var currentUser = req.session.currentUser;
