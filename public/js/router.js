@@ -3,16 +3,23 @@ trequire.define([
   'jquery',
   'underscore',
   'backbone',
-  'views/index'
-  ], function($, _, Backbone, IndexView){
+  'views/index',
+  'views/additemform'
+  ], function($, _, Backbone, IndexView, AddItemFormView){
     var AppRouter = Backbone.Router.extend({
         routes: {
-          '': 'index'
+          '': 'index',
+          'additem': 'additem'
         },
 
         index: function() {
             var indexView = new IndexView();
             indexView.render();
+        },
+
+        additem: function() {
+          var addItemForm = new AddItemFormView();
+          addItemForm.render();
         }
     });
 

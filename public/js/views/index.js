@@ -1,25 +1,29 @@
-// Filename: views/projects/list
 trequire.define([
-  'jquery',
-  'underscore',
-  'backbone'
-  ], function($, _, Backbone){
-      var IndexView = Backbone.View.extend({
-        el: $('#infobar'),
+    'jquery',
+    'underscore',
+    'backbone',
+    'router', // Request router.js
+    ], function($, _, Backbone, Router){
 
-        events: {
-            'click .infobar-add-btn': 'addItem',
-        },
+        var IndexView = Backbone.View.extend({
+            el: $('#infobar'),
 
-        addItem: function(e) {
-            console.log('additem!!!');
-            $('#add-item-modal').modal('show');
-        },
+            events: {
+                'click .infobar-add-btn': 'addItem',
+            },
 
-        initialize: function() {
-            $('#add-item-modal').modal('hide');
-        }
-    });
-  // Returning instantiated views can be quite useful for having "state"
-  return IndexView;
+            addItem: function(e) {
+                $('#add-item-modal').modal('show');
+
+                // Changes the route
+                Backbone.history.navigate('/additem', true);
+            },
+
+            initialize: function() {
+                $('#add-item-modal').modal('hide');
+            }
+        });
+
+    // Returning instantiated views can be quite useful for having "state"
+    return IndexView;
 });

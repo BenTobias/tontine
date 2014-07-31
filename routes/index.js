@@ -5,7 +5,7 @@ var User = require('../models/user');
 var Item = require('../models/items');
 var httpreq = require('httpreq');
 var http = require('http');
-
+var app = express();
 
 
 router.get('/', function (req, res) {
@@ -22,6 +22,7 @@ router.get('/', function (req, res) {
     photo_url: "String"
 };
 console.log(itemTester);
+<<<<<<< HEAD
 var popItem = new Item();
 popItem.title = "bob";
 popItem.titleKey = "string";
@@ -32,6 +33,7 @@ popItem.save(function(err) {
 
 console.log("Winning");
 console.log(Item.search("blah"));*/
+
 
 
 console.log("before");
@@ -130,6 +132,7 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/additem', function(req, res) {
+<<<<<<< HEAD
   var newItem = new Item();
   for (field in newItem) {
     newItem.field = req.body[field];
@@ -141,12 +144,19 @@ router.post('/additem', function(req, res) {
       throw err;
     }
   })
+=======
+    console.log('posting');
+    console.log(req.body);
+>>>>>>> 52ac0e1368aa23765143f2deb046508113986e83
 });
 
 
 router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  Item.search(keyword);
+  // Item.search(keyword);
+  // Item.find({keywords: {$regex: new RegExp("^" + keyword)}, function(err, matching_results) {
+  //   return matching_results;
+  // };
 });
 
 router.get('/yammer', function(req, res) {
