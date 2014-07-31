@@ -6,18 +6,10 @@ trequire.define([
     ], function($, _, Backbone, Router){
 
         var IndexView = Backbone.View.extend({
-            el: $('#infobar'),
+            el: $('#isotope-demo'),
 
             events: {
-                'click .infobar-add-btn': 'addItem',
 								'click .symbol': 'showItem'
-            },
-
-            addItem: function(e) {
-                $('#add-item-modal').modal('show');
-
-                // Changes the route
-                Backbone.history.navigate('/additem', true);
             },
 
 						showItem: function(e) {
@@ -27,11 +19,7 @@ trequire.define([
 						},
 						
             initialize: function() {
-                $('#add-item-modal').modal('hide');
-
-                $('#add-item-modal').on('hidden.bs.modal', function (e) {
-                    Backbone.history.navigate('/', true);
-                })
+              $('#show-item-modal').modal('hide');
             }
         });
 
