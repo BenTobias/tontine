@@ -22,7 +22,6 @@ router.get('/', function (req, res) {
     photo_url: "String"
 };
 console.log(itemTester);
-<<<<<<< HEAD
 var popItem = new Item();
 popItem.title = "bob";
 popItem.titleKey = "string";
@@ -132,22 +131,9 @@ router.post('/register', function(req, res) {
 });
 
 router.post('/additem', function(req, res) {
-<<<<<<< HEAD
-  var newItem = new Item();
-  for (field in newItem) {
-    newItem.field = req.body[field];
 
-  }
-  newItem.save(function(err) {
-    if (err){
-      console.log(err);
-      throw err;
-    }
-  })
-=======
     console.log('posting');
     console.log(req.body);
->>>>>>> 52ac0e1368aa23765143f2deb046508113986e83
 });
 
 
