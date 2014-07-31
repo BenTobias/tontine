@@ -55,6 +55,10 @@ a {
     margin-bottom: 10px;
 }
 
+#popupDatepicker{
+	z-index : 20000;
+}
+
 /*isotope*/
 
 * {

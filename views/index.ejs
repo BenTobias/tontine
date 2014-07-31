@@ -17,7 +17,7 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-
+    <link href="/stylesheets/css/datepick.css" rel="stylesheet">
 
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 
@@ -41,33 +41,33 @@
 
         </div>
 
-    <div class="col-md-4">
-        <form role="form">
-          <div class="infobar-form form-group">
-            <input type="text" class="form-control" id="infobar-searchbox" placeholder="Search">
-          </div>
-      </form>
+        <div class="col-md-4">
+            <form role="form">
+              <div class="infobar-form form-group">
+                <input type="text" class="form-control" id="infobar-searchbox" placeholder="Search">
+            </div>
+        </form>
     </div>
 
     <div class="col-md-1"> </div>
 
     <div class="col-md-3">
         <% if (authenticated)  {%>
-            <img width="45" height="45" src="<%= tontineUser.photo %>">
+        <img width="45" height="45" src="<%= tontineUser.photo %>">
         <% }else {%>
-            <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
+        <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
         <%}%>
-      </div>
     </div>
+</div>
 
 
-    <h2> Post form</h2> 
-    <form method="post" action="/postMessage"> 
+<h2> Post form</h2> 
+<form method="post" action="/postMessage"> 
     <input type=submit value="Submit Post"> 
-    </form>
+</form>
 
 
-      
+
 <h1>Isotope - layout modes</h1>
 
 <div id="layout-mode-button-group" class="button-group">
@@ -115,10 +115,10 @@
 
 
 
-    <div id="add-item-modal" class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <h3 class="modal-header add-item-modal-header">Add New Item</h4>
+<div id="add-item-modal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h3 class="modal-header add-item-modal-header">Add New Item</h4>
                 <form role="form" id="add-item-modal-form-container">
                     <div class="modal-body">
                         <div class="add-item-modal-form form-group">
@@ -142,6 +142,11 @@
 
                             <label class="add-item-modal-form-label" for="add-item-modal-form-reputation">Reputation</label>
                             <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-reputation" placeholder="100">
+
+                            <label class="add-item-modal-form-label" for="add-item-modal-form-enddate">End Date</label>
+                            <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-enddate popupDatepicker" placeholder="100">
+
+                            <p>A popup datepicker <input type="text" id="popupDatepicker" ></p>
                         </div>
                     </div>
 
@@ -153,6 +158,7 @@
         </div>
     </div>
 
+
     <!-- Core JavaScript Files -->
     <script src="js/lib/jquery/jquery.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -163,69 +169,76 @@
     <script type="text/javascript" data-app-id="OfONHDZ938SqEUudZF2dw" src="https://assets.yammer.com/assets/platform_js_sdk.js"></script>
     <script> yam.connect.loginButton('#yammer-login', function (resp) { if (resp.authResponse) { document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!'; } }); </script>
 
-	<script src="http://isotope.metafizzy.co/beta/isotope.pkgd.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-column/cells-by-column.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-row/cells-by-row.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-fit-columns/fit-columns.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-horizontal/horizontal.js"></script>
-	<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-masonry-horizontal/masonry-horizontal.js"></script>
+    <script src="http://isotope.metafizzy.co/beta/isotope.pkgd.js"></script>
+    <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-column/cells-by-column.js"></script>
+    <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-row/cells-by-row.js"></script>
+    <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-fit-columns/fit-columns.js"></script>
+    <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-horizontal/horizontal.js"></script>
+    <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-masonry-horizontal/masonry-horizontal.js"></script>
+    <script src="/js/jqueryplugin.js"></script>
+    <script src="/js/jquerydatepick.js"></script>
 
-	<script>
+    <script>
 
-	$( function() {
+     $( function() {
 	  // init Isotope
 	  var $container = $('#isotope-demo').isotope({
-	    itemSelector: '.element-item',
-	    layoutMode: 'masonry',
-	    masonry: {
-	      columnWidth: 110
-	    },
-	    cellsByRow: {
-	      columnWidth: 220,
-	      rowHeight: 220
-	    },
-	    masonryHorizontal: {
-	      rowHeight: 110
-	    },
-	    cellsByColumn: {
-	      columnWidth: 220,
-	      rowHeight: 220
-	    }
-	  });
+     itemSelector: '.element-item',
+     layoutMode: 'masonry',
+     masonry: {
+       columnWidth: 110
+   },
+   cellsByRow: {
+       columnWidth: 220,
+       rowHeight: 220
+   },
+   masonryHorizontal: {
+       rowHeight: 110
+   },
+   cellsByColumn: {
+       columnWidth: 220,
+       rowHeight: 220
+   }
+});
 
-	  var isHorizontal = false;
-	  var $window = $( window );
+    $('#popupDatepicker').datepick();
+    $('#inlineDatepicker').datepick({onSelect: showDate});
+    var isHorizontal = false;
+    var $window = $( window );
 
-	  $('#layout-mode-button-group').on( 'click', 'button', function() {
+    $('#layout-mode-button-group').on( 'click', 'button', function() {
 	    // adjust container sizing if layout mode is changing from vertical or horizontal
 	    var $this = $(this);
 	    var isHorizontalMode = !!$this.attr('data-is-horizontal');
 	    if ( isHorizontal !== isHorizontalMode ) {
 	      // change container size if horiz/vert change
 	      var containerStyle = isHorizontalMode ? {
-	        height: $window.height() * 0.7
-	      } : {
-	        width: 'auto'
-	      };
-	      $container.css( containerStyle );
-	      isHorizontal = isHorizontalMode;
-	    }
+         height: $window.height() * 0.7
+     } : {
+         width: 'auto'
+     };
+     $container.css( containerStyle );
+     isHorizontal = isHorizontalMode;
+ }
 	    // change layout mode
 	    var layoutModeValue = $this.attr('data-layout-mode-value');
 	    $container.isotope({ layoutMode: layoutModeValue });
-	  });  
+   });  
 
 	  // change is-checked class on buttons
 	  $('.button-group').each( function( i, buttonGroup ) {
-	    var $buttonGroup = $( buttonGroup );
-	    $buttonGroup.on( 'click', 'button', function() {
-	      $buttonGroup.find('.is-checked').removeClass('is-checked');
-	      $( this ).addClass('is-checked');
-	    });
-	  });
+     var $buttonGroup = $( buttonGroup );
+     $buttonGroup.on( 'click', 'button', function() {
+       $buttonGroup.find('.is-checked').removeClass('is-checked');
+       $( this ).addClass('is-checked');
+   });
+ });
 
 	});
-	</script>
+function showDate(date) {
+    alert('The date chosen is ' + date);
+}
+</script>
 </body>
 
 </html>
