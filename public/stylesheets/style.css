@@ -424,3 +424,13 @@ img:hover{
 .element-item.halogen:hover          { background: #F0F; background: hsl( 288, 100%, 50%); }
 .element-item.noble-gas:hover        { background: #F08; background: hsl( 324, 100%, 50%); }*/
 
+
+span#yammer-login img {
+  width: 100px;
+  height: 100px;
+}
+
+#infobar img {
+  width: 45px;
+  height: 45px;
+}
