@@ -25,7 +25,8 @@ trequire.define([
                 itemTags: tags,
                 minParticipants: $('#add-item-modal-form-participants').val(),
                 individualCost: $('#add-item-modal-form-cost').val(),
-                reputation: $('#add-item-modal-form-reputation').val()
+                reputation: $('#add-item-modal-form-reputation').val(),
+                endDate: $('#add-item-modal-form-enddate').val()
             }
         },
 
@@ -45,6 +46,7 @@ trequire.define([
         },
 
         initialize: function() {
+            $('#add-item-modal-form-enddate').datepick();
         }
     });
   // Returning instantiated views can be quite useful for having "state"

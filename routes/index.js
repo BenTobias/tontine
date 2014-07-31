@@ -3,35 +3,22 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 var Item = require('../models/items');
+var ItemController = require('../controllers/itemController.js');
 var httpreq = require('httpreq');
 var http = require('http');
-
+var app = express();
 
 
 router.get('/', function (req, res) {
-  var itemTester = {
-    title: "String",
-    titleKey: "String",
-    description: "String",
-    cost: 0,
-    startTime: 7/30/2014,
-    endTime: 8/7/2015,
-    userId: "String",
-    participants: ["bob", "jane"],
-    keywords: ["skydiving"],
-    photo_url: "String"
-};
-console.log(itemTester);
 
 
-
-  console.log("before");
-  var currentUser = null;
-  var authentication = false;
-  if (req.session.currentUser) {
-    currentUser = req.session.currentUser;
-    authentication = true;
-    console.log("loggin here");
+console.log("before");
+var currentUser = null;
+var authentication = false;
+if (req.session.currentUser) {
+  currentUser = req.session.currentUser;
+  authentication = true;
+  console.log("loggin here");
 }
 res.render('index', { tontineUser : currentUser, authenticated: authentication });
 
@@ -62,45 +49,45 @@ router.post('/postMessage', function(req, res) {
       "object": {
         "url":"blahblah",
         "title":"Finding card Item"
-    },
-    "message":"Hey let's do this",
-}
-};
-var resultObject;
-var postString = JSON.stringify(postInformation);
-var headers = {
+      },
+      "message":"Hey let's do this",
+    }
+  };
+  var resultObject;
+  var postString = JSON.stringify(postInformation);
+  var headers = {
     'Content-Type': 'application/json',
     'Authorization': "Bearer " + currentUser.access_token
-};
-var options = {
+  };
+  var options = {
     host: 'www.yammer.com',
     path: '/api/v1/activity',
     method: 'POST',
     headers: headers
-};
+  };
 
-var req = http.request(options, function(res) {
+  var req = http.request(options, function(res) {
     res.setEncoding('utf-8');
     var responseString = '';
 
     res.on('data', function(data) {
       console.log("data coming in");
       responseString += data;
-  });
+    });
 
     res.on('end', function(){
       console.log("done");
       console.log(responseString);
+    });
   });
-});
 
 
-req.on('error', function(e) {
+  req.on('error', function(e) {
     console.log(e);
-});
+  });
 
-req.end();
-res.redirect('/');
+  req.end();
+  res.redirect('/');
 
 
 });
@@ -114,36 +101,29 @@ router.post('/register', function(req, res) {
   console.log(req.body.password);
   if((req.body.password).length < 4){
     return res.render("register", {info: "Get a longer password"});
-}
-User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
+  }
+  User.register(new User({ username : req.body.username }), req.body.password, function(err, account) {
     if (err) {
       return res.render("register", {info: "Sorry. That username already exists. Try again."});
-  }
+    }
 
-  passport.authenticate('local-signup')(req, res, function () {
+    passport.authenticate('local-signup')(req, res, function () {
       res.redirect('/');
+    });
   });
-});
 });
 
 router.post('/additem', function(req, res) {
-  var newItem = new Item();
-  for (field in newItem) {
-    newItem.field = req.body[field];
 
-}
-newItem.save(function(err) {
-    if (err){
-      console.log(err);
-      throw err;
-  }
-})
+    console.log('posting');
+
+    var response = ItemController.addItem(req.body);
+    res.send(response);
 });
 
 
 router.post('/search', function(req, res) {
   var keyword = req.body.keyword;
-  Item.search(keyword);
 });
 
 router.get('/yammer', function(req, res) {
@@ -164,13 +144,13 @@ router.get('/yammer', function(req, res) {
     User.findOne({'id' : yammerId}, function(err, user) {
       if (err)
         console.log(err);
-    if (user) {
+      if (user) {
         user.access_token = yammerAccessToken;
         user.photo = mugshot;
         console.log("User has been created");
         currentUser = user;
-    }
-    else {
+      }
+      else {
         var newUser = new User();
         newUser.id = yammerId;
         newUser.access_token = yammerAccessToken;
@@ -181,16 +161,16 @@ router.get('/yammer', function(req, res) {
         newUser.save(function(err) {
           if (err) 
             throw err;
-        currentUser = user;
+          currentUser = user;
+        });
+      }
+      req.session.currentUser = currentUser;
+      req.session.authenticated = true;
+      res.render('index', {tontineUser : currentUser, authenticated: req.session.authenticated });
     });
-    }
-    req.session.currentUser = currentUser;
-    req.session.authenticated = true;
-    res.render('index', {tontineUser : currentUser, authenticated: req.session.authenticated });
-});
 
 
-});
+  });
 
 
 });
@@ -199,6 +179,9 @@ router.get('newAddress', function(req, res) {
   res.render('yammer');
 });
 
+router.get('/test', function(req, res) {
+  res.render('yammer');
+})
 
 
 
@@ -216,7 +199,7 @@ router.get('/profile', function(req, res) {
   isYammerLoggedIn();
   res.render('profile.ejs', {
       user : req.user // get the user out of session and pass to template
-  });
+    });
 });
 
 
@@ -238,7 +221,7 @@ function isLoggedIn(req, res, next) {
 
   if (req.isAuthenticated())
     return next();
-res.redirect('/login');
+  res.redirect('/login');
 };
 
 function isYammerLoggedIn() {
@@ -247,10 +230,10 @@ function isYammerLoggedIn() {
       if (response.authResponse) {
         console.log("logged in");
         console.dir(response); //print user information to the console
-    }
+      }
     else { //authResponse = false if the user is not logged in, or is logged in but hasn't authorized your app yet
       console.log("logged out");
-}
+  }
 }
 )();
 }

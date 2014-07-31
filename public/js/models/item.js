@@ -14,9 +14,10 @@ trequire.define([
             userId: '',
             itemTitle: '',
             itemDescription: '',
-            itemTags: {},
+            itemTags: [],
             minParticipants: 0,
-            reputation: 0
+            reputation: 0,
+            individualCost: 0
         }
     });
 

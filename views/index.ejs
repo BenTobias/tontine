@@ -17,7 +17,7 @@
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-
+    <link href="/stylesheets/css/datepick.css" rel="stylesheet">
 
     <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 
@@ -41,35 +41,36 @@
 
         </div>
 
-    <div class="col-md-4">
-        <form role="form">
-          <div class="infobar-form form-group">
-            <input type="text" class="form-control" id="infobar-searchbox" placeholder="Search">
-          </div>
-      </form>
+        <div class="col-md-4">
+            <form role="form">
+              <div class="infobar-form form-group">
+                <input type="text" class="form-control" id="infobar-searchbox" placeholder="Search">
+            </div>
+        </form>
     </div>
 
     <div class="col-md-1"> </div>
 
     <div class="col-md-3">
         <% if (authenticated)  {%>
-            <img width="45" height="45" src="<%= tontineUser.photo %>">
+        <img width="45" height="45" src="<%= tontineUser.photo %>">
         <% }else {%>
-            <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
+        <a href="https://www.yammer.com/dialog/oauth?client_id=OfONHDZ938SqEUudZF2dw&redirect_uri=http://localhost:3000/yammer"><span id="yammer-login"></span></a>
         <%}%>
-      </div>
     </div>
+</div>
 
 
-    <h2> Post form</h2> 
-    <form method="post" action="/postMessage"> 
+<!-- <h2> Post form</h2> 
+<form method="post" action="/postMessage"> 
     <input type=submit value="Submit Post"> 
-    </form>
+    </form> -->
 <div id="sorts" class="button-group">
   <button class="button is-checked" data-sort-value="original-order">original order</button>
   <button class="button" data-sort-value="cost">Cost</button>
   <button class="button" data-sort-value="starttime">Start Time</button>
   <button class="button" data-sort-value="endtime">End time</button>
+
 </div>
 
 <div class="isotope">
@@ -148,11 +149,12 @@
     <p class="cost">94</p>
   </div>
 </div>
-    <div id="add-item-modal" class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <h3 class="modal-header add-item-modal-header">Add New Item</h4>
-                <form role="form">
+
+<div id="add-item-modal" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h3 class="modal-header add-item-modal-header">Add New Item</h4>
+                <form role="form" id="add-item-modal-form-container">
                     <div class="modal-body">
                         <div class="add-item-modal-form form-group">
                             <label class="add-item-modal-form-label" for="add-item-modal-form-title">Item Title</label>
@@ -169,14 +171,11 @@
                                 <div class="input-group-addon">$</div>
                                 <input type="number" class="form-control " id="add-item-modal-form-cost" placeholder="99">
                             </div>
+                            <label class="add-item-modal-form-label" for="add-item-modal-form-reputation">Reputation</label>
+                            <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-reputation" placeholder="100">
 
-                            <label class="add-item-modal-form-label" for="add-item-modal-form-deposit-percentage">Deposit Percentage</label>
-                            <select class="form-control add-item-modal-form-input" id="add-item-modal-form-deposit-percentage">
-                              <option>25%</option>
-                              <option>50%</option>
-                              <option>75%</option>
-                              <option>100%</option>
-                            </select>
+                            <label class="add-item-modal-form-label" for="add-item-modal-form-enddate">End Date</label>
+                            <input type="text" class="form-control add-item-modal-form-input" id="add-item-modal-form-enddate" placeholder="10/20/2014">
                         </div>
                     </div>
 
@@ -228,14 +227,17 @@
     <script type="text/javascript" data-app-id="OfONHDZ938SqEUudZF2dw" src="https://assets.yammer.com/assets/platform_js_sdk.js"></script>
     <script> yam.connect.loginButton('#yammer-login', function (resp) { if (resp.authResponse) { document.getElementById('yammer-login').innerHTML = 'Welcome to Yammer!'; } }); </script>
 
-<script src="http://isotope.metafizzy.co/beta/isotope.pkgd.js"></script>
-<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-column/cells-by-column.js"></script>
-<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-row/cells-by-row.js"></script>
-<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-fit-columns/fit-columns.js"></script>
-<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-horizontal/horizontal.js"></script>
-<script src="http://isotope.metafizzy.co/beta/bower_components/isotope-masonry-horizontal/masonry-horizontal.js"></script>
 
-<script>
+  <script src="http://isotope.metafizzy.co/beta/isotope.pkgd.js"></script>
+  <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-column/cells-by-column.js"></script>
+  <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-cells-by-row/cells-by-row.js"></script>
+  <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-fit-columns/fit-columns.js"></script>
+  <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-horizontal/horizontal.js"></script>
+  <script src="http://isotope.metafizzy.co/beta/bower_components/isotope-masonry-horizontal/masonry-horizontal.js"></script>
+    <script src="/js/jqueryplugin.js"></script>
+    <script src="/js/jquerydatepick.js"></script>
+
+    <script>
 
 $( function() {
   // init Isotope
@@ -265,7 +267,6 @@ $( function() {
   });
   
 });
-
 </script>
 </body>
 

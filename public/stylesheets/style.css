@@ -242,6 +242,11 @@ li {
     margin-bottom: 10px;
 }
 
+.datepick-popup{
+	z-index : 1051;
+}
+
+/*isotope*/
 * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
