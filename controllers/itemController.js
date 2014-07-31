@@ -8,7 +8,8 @@ exports.addItem = function(itemData) {
         tags: itemData.itemTags,
         minParticipants: parseInt(itemData.minParticipants),
         reputation: parseInt(itemData.reputation),
-        individualCost: parseInt(itemData.individualCost)
+        individualCost: parseInt(itemData.individualCost),
+        endTime: itemData.endTime
     });
 
     item.save(function(err) {

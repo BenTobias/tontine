@@ -144,9 +144,7 @@
                             <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-reputation" placeholder="100">
 
                             <label class="add-item-modal-form-label" for="add-item-modal-form-enddate">End Date</label>
-                            <input type="number" class="form-control add-item-modal-form-input" id="add-item-modal-form-enddate popupDatepicker" placeholder="100">
-
-                            <p>A popup datepicker <input type="text" id="popupDatepicker" ></p>
+                            <input type="text" class="form-control add-item-modal-form-input" id="add-item-modal-form-enddate" placeholder="10/20/2014">
                         </div>
                     </div>
 
@@ -201,8 +199,6 @@
    }
 });
 
-    $('#popupDatepicker').datepick();
-    $('#inlineDatepicker').datepick({onSelect: showDate});
     var isHorizontal = false;
     var $window = $( window );
 

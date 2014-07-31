@@ -6,7 +6,7 @@ var Item = new Schema({
 	title: String,
 	description: String,
 	individualCost: Number,
-	startTime: Date,
+	startTime: { type: Date, default: Date.now },
 	endTime: Date,
 	userId: String,
 	participants: [Number],
